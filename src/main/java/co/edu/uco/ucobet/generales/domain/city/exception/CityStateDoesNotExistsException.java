@@ -1,7 +1,18 @@
 package co.edu.uco.ucobet.generales.domain.city.exception;
 
-public class CityStateDoesNotExistsException extends RuntimeException{
+import co.edu.uco.ucobet.generales.crosscuting.exception.RuleUcoBetException;
+
+public class CityStateDoesNotExistsException extends RuleUcoBetException{
+
+	public CityStateDoesNotExistsException(String userMessage) {
+		super(userMessage, userMessage, new Exception());
+	}
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final CityStateDoesNotExistsException create() {
+		var userMessage = "//////...";
+		return new CityStateDoesNotExistsException(userMessage);
+	}
 
 }

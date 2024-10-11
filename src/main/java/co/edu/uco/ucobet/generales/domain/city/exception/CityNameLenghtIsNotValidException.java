@@ -1,7 +1,22 @@
 package co.edu.uco.ucobet.generales.domain.city.exception;
 
-public class CityNameLenghtIsNotValidException extends RuntimeException{
+
+
+import co.edu.uco.ucobet.generales.crosscuting.exception.RuleUcoBetException;
+
+public class CityNameLenghtIsNotValidException extends RuleUcoBetException{
+
+	public CityNameLenghtIsNotValidException(String userMessage) {
+		super(userMessage, userMessage, new Exception());
+	}
 
 	private static final long serialVersionUID = 1L;
+	
+	
+	public static final CityNameLenghtIsNotValidException create() {
+		var userMessage = "//////...";
+		return new CityNameLenghtIsNotValidException(userMessage);
+	}
+
 
 }
