@@ -12,7 +12,7 @@ public class CityNameIsNullException extends RuleUcoBetException{
 	private static final long serialVersionUID = 1L;
 	
 	public static final CityNameIsNullException create() {
-		var userMessage = "El nombre de la ciudad es nulo...";
+		var userMessage = "El nombre de la ciudad no puede ser nulo...";
 		return new CityNameIsNullException(userMessage);
 	}
 

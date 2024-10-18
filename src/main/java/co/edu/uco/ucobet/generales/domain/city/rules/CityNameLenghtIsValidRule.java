@@ -6,5 +6,8 @@ import co.edu.uco.ucobet.generales.domain.DomainRule;
 
 @Service
 public interface CityNameLenghtIsValidRule extends DomainRule<String> {
+	
+	
+	
 
 }

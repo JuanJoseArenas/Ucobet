@@ -48,11 +48,11 @@ public final class CityEntity {
 	}
 	
 	
-	static final CityEntity create(final UUID id, final String name, final StateEntity state) {
+	public static final CityEntity create(final UUID id, final String name, final StateEntity state) {
 		return new CityEntity(id, name, state);
 	}
 	
-	static final CityEntity create(final UUID id) {
+	public static final CityEntity create(final UUID id) {
 		return new CityEntity(id, TextHelper.EMPTY, StateEntity.create());
 	}
 
@@ -85,12 +85,6 @@ public final class CityEntity {
 	public void setState(final StateEntity state) {
 		this.state = ObjectHelper.getDefault(state, StateEntity.create());
 	}
-	
-	
-
-	
-	
-	
 	
 
 }

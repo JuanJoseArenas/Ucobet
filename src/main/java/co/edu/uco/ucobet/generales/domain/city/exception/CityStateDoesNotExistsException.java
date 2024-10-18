@@ -11,7 +11,7 @@ public class CityStateDoesNotExistsException extends RuleUcoBetException{
 	private static final long serialVersionUID = 1L;
 	
 	public static final CityStateDoesNotExistsException create() {
-		var userMessage = "//////...";
+		var userMessage = "El estado asociado a la ciudad no existe...";
 		return new CityStateDoesNotExistsException(userMessage);
 	}
 

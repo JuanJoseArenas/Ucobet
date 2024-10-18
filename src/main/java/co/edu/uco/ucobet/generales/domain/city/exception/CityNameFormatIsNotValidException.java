@@ -12,7 +12,7 @@ public class CityNameFormatIsNotValidException extends RuleUcoBetException{
 	private static final long serialVersionUID = 1L;
 	
 	public static final CityNameFormatIsNotValidException create() {
-		var userMessage = "/////...";
+		var userMessage = "El formato del nombre no es valido...";
 		return new CityNameFormatIsNotValidException(userMessage);
 	}
 

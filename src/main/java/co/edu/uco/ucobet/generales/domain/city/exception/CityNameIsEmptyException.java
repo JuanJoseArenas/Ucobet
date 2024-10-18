@@ -11,7 +11,7 @@ public class CityNameIsEmptyException extends RuleUcoBetException {
 	private static final long serialVersionUID = 1L;
 	
 	public static final CityNameIsEmptyException create() {
-		var userMessage = "El nombre de la ciudad esta vacio...";
+		var userMessage = "El nombre de la ciudad no puede estar vacio...";
 		return new CityNameIsEmptyException(userMessage);
 	}
 

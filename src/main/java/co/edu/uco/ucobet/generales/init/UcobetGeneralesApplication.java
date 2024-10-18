@@ -9,8 +9,17 @@ import org.springframework.context.annotation.ComponentScan;
 import com.azure.security.keyvault.secrets.SecretClient;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller" })
-public class UcobetGeneralesApplication implements CommandLineRunner{
+@ComponentScan(basePackages = {"co.edu.uco.ucobet" })
+
+public class UcobetGeneralesApplication  {
+
+    public static void main(String[] args) {
+        SpringApplication.run(UcobetGeneralesApplication.class, args);
+    }
+    
+}
+/*Aplication para cuando voy a ensayar el key vaul
+public class UcobetGeneralesApplication implements CommandLineRunner {
 
     private final SecretClient secretClient;
 
@@ -29,4 +38,4 @@ public class UcobetGeneralesApplication implements CommandLineRunner{
         System.setProperty("welcome", h2url);
         System.out.println("h2url: " + h2url);
     }
-}
+}*/

@@ -12,7 +12,7 @@ public class CityIsBeginUsedException extends RuleUcoBetException
 	private static final long serialVersionUID = 1L;
 	
 	public static final CityIsBeginUsedException create() {
-		var userMessage = "/////...";
+		var userMessage = "La ciudad esta siendo utilizada en otra parte del sistema...";
 		return new CityIsBeginUsedException(userMessage);
 	}
 

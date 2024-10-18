@@ -11,7 +11,7 @@ public class CityNameForStateDoesExistsException extends RuleUcoBetException {
 	private static final long serialVersionUID = 1L;
 
 	public static final CityNameForStateDoesExistsException create() {
-		var userMessage = "No existe la ciudad con el id indicado...";
+		var userMessage = "El nombre de la ciudad para este departamento ya existe...";
 		return new CityNameForStateDoesExistsException(userMessage);
 	}
 }
