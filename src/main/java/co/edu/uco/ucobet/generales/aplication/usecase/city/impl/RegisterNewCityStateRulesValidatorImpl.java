@@ -26,6 +26,11 @@ public final class RegisterNewCityStateRulesValidatorImpl implements RegisterNew
 	}
 	@Override
 	public void validate(final UUID stateid) {
+		validateState(stateid);
+				
+	}
+	
+	public void validateState(final UUID stateid) {
 		stateDoesExistsRule.validate(stateid);
 		stateIdIsNotDefaultValueRule.validate(stateid);
 		stateIdIsNotNullRule.validate(stateid);
