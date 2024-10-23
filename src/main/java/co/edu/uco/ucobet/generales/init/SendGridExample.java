@@ -18,7 +18,7 @@ public class SendGridExample {
         Content content = new Content("text/html", "<strong>Su Plan de estacionamiento, en la sede Principal esta proxima a vencer, por favor ingresa al siguiente link para renovar su plan</strong>");
         Mail mail = new Mail(from, subject, to, content);
 
-//        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid("SENDGRID_API_KEY");
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
