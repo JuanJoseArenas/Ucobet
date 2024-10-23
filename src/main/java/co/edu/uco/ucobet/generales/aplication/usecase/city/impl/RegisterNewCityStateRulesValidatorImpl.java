@@ -3,12 +3,14 @@ package co.edu.uco.ucobet.generales.aplication.usecase.city.impl;
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Service;
+
 import co.edu.uco.ucobet.generales.aplication.usecase.city.RegisterNewCityStateRulesValidator;
 import co.edu.uco.ucobet.generales.domain.state.rules.StateDoesExistsRule;
 import co.edu.uco.ucobet.generales.domain.state.rules.StateIdIsNotDefaultValueRule;
 import co.edu.uco.ucobet.generales.domain.state.rules.StateIdIsNotNullRule;
 
-
+@Service
 public final class RegisterNewCityStateRulesValidatorImpl implements RegisterNewCityStateRulesValidator {
 
 	private StateDoesExistsRule stateDoesExistsRule;

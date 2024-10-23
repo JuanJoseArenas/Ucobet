@@ -1,11 +1,10 @@
-package co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.data.sql.repository;
+package co.edu.uco.ucobet.generales.aplication.secondaryports.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import co.edu.uco.ucobet.generales.aplication.secondaryports.entity.CityEntity;
-import co.edu.uco.ucobet.generales.aplication.secondaryports.repository.CityRepositoryCustom;
 import co.edu.uco.ucobet.generales.crosscuting.exception.RepositoryUcoBetException;
 import co.edu.uco.ucobet.generales.crosscuting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.crosscuting.helpers.TextHelper;
@@ -13,7 +12,7 @@ import co.edu.uco.ucobet.generales.crosscuting.helpers.UUIDHelper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Predicate;
 
-public final class CityRepositoryCustomImpl implements CityRepositoryCustom {
+public class CityRepositoryCustomImpl implements CityRepositoryCustom {
 
 	private EntityManager entityManager;
 

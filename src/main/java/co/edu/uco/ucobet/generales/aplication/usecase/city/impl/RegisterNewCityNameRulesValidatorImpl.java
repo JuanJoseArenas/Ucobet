@@ -1,5 +1,7 @@
 package co.edu.uco.ucobet.generales.aplication.usecase.city.impl;
 
+import org.springframework.stereotype.Service;
+
 import co.edu.uco.ucobet.generales.aplication.usecase.city.RegisterNewCityNameRulesValidator;
 import co.edu.uco.ucobet.generales.domain.city.CityDomain;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityNameForStateDoesNotExistsRule;
@@ -7,7 +9,7 @@ import co.edu.uco.ucobet.generales.domain.city.rules.CityNameFormatIsValidRule;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityNameIsNotEmptyRule;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityNameIsNotNullRule;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityNameLenghtIsValidRule;
-
+@Service
 public final class RegisterNewCityNameRulesValidatorImpl implements RegisterNewCityNameRulesValidator {
 
 	private CityNameLenghtIsValidRule cityNameLengthIsValidRule;

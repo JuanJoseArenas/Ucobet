@@ -1,12 +1,14 @@
 package co.edu.uco.ucobet.generales.aplication.usecase.city.impl;
 
+import org.springframework.stereotype.Service;
+
 import co.edu.uco.ucobet.generales.aplication.secondaryports.entity.CityEntity;
 import co.edu.uco.ucobet.generales.aplication.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.aplication.usecase.city.RegisterNewCity;
 
 import co.edu.uco.ucobet.generales.aplication.usecase.city.RegisterNewCityRulesValidator;
 import co.edu.uco.ucobet.generales.domain.city.CityDomain;
-
+@Service
 public final class RegisterNewCityImpl implements RegisterNewCity {
 
 	private CityRepository cityRepository;
