@@ -14,12 +14,12 @@ import co.edu.uco.ucobet.generales.crosscuting.helpers.UUIDHelper;
 @RequestMapping("/general/api/v1/cities")
 public class RegisterNewCityController {
 	
-//	private RegisterNewCityInteractor registerNewCityInteractor;
-//	
-//	public RegisterNewCityController(final RegisterNewCityInteractor registerNewCityInteractor) {
-//		super();
-//		this.registerNewCityInteractor = registerNewCityInteractor;
-//	}
+	private RegisterNewCityInteractor registerNewCityInteractor;
+	
+	public RegisterNewCityController(final RegisterNewCityInteractor registerNewCityInteractor) {
+		super();
+		this.registerNewCityInteractor = registerNewCityInteractor;
+	}
 
 	@PostMapping
 	public RegisterNewCityDTO execute(@RequestBody RegisterNewCityDTO dto) {
