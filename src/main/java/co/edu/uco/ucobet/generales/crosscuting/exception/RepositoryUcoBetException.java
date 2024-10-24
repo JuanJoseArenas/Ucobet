@@ -7,7 +7,7 @@ public class RepositoryUcoBetException extends UcobetException {
 	private static final long serialVersionUID = 1L;
 
 	public RepositoryUcoBetException(final String userMessage, final String technicalMessage, final Exception rootException){
-		super(userMessage, technicalMessage, rootException, Layer.REPOSITORY);
+		super(userMessage, technicalMessage, rootException, Layer.CROSSCUTING);
 	}
 	
 	public static final RepositoryUcoBetException create(final String userMessage, final String technicalMessage, final Exception rootException) {

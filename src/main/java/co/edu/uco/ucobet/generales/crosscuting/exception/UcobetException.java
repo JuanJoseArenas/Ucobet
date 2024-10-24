@@ -17,6 +17,9 @@ public class UcobetException extends RuntimeException {
 		setLayer(layer);
 	}
 
+	public UcobetException(final String userMessage, final String technicalMessage) {
+		super(ObjectHelper.getDefault(technicalMessage, TextHelper.applyTrim(userMessage)));
+	}
 
 	private void setLayer(Layer layer) {
 		this.layer = ObjectHelper.getDefault(layer, Layer.GENERAL);

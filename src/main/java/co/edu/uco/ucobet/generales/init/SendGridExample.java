@@ -14,11 +14,11 @@ public class SendGridExample {
     public static void main(String[] args) {
         Email from = new Email("juanjoseaq99@gmail.com");
         String subject = "Ucobet";
-        Email to = new Email("alzatedavid0126@gmail.com");
+        Email to = new Email("juanjoseaq99@gmail.com");
         Content content = new Content("text/html", "<strong>Su Plan de estacionamiento, en la sede Principal esta proxima a vencer, por favor ingresa al siguiente link para renovar su plan</strong>");
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid("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");
         Request request = new Request();
         try {
             request.setMethod(Method.POST);

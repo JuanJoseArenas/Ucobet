@@ -37,8 +37,8 @@ public class UcobetGeneralesApplication  {
 //    @Override
 //    public void run(String... args) {
 //        // Recupera el secreto desde Azure Key Vault y establece la URL de la base de datos
-//        String h2url = secretClient.getSecret("ejemplo").getValue();
-//        System.setProperty("ejemplo", h2url);
+//        String h2url = secretClient.getSecret("Welcome").getValue();
+//        System.setProperty("Welcome", h2url);
 //        System.out.println("h2url: " + h2url);
 //    }
 //}
