@@ -86,7 +86,7 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
 
 		} catch (final Exception exception) {
 			throw RepositoryUcoBetException.create(
-					"Error al verificar si existe una ciudad con el nombre y estado especificados", null, exception);
+					"Error al verificar, si existe una ciudad con el nombre y estado especificados", null, exception);
 		}
 	}
 }

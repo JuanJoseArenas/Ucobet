@@ -18,7 +18,7 @@ public class CityIdDoesNotExistsRuleImpl implements CityIdDoesNotExistsRule{
 
 	@Override
 	public void validate(final UUID data) {
-		if(!cityRepository.existsById(data)) {
+		if(cityRepository.existsById(data)) {
 			throw CityIdDoesNotExistsException.create();
 			
 		}
