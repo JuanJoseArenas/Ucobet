@@ -1,5 +1,7 @@
 package co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.ucobet.generales.aplication.primaryports.dto.RegisterNewCityDTO;
 import co.edu.uco.ucobet.generales.aplication.primaryports.interactor.city.RegisterNewCityInteractor;
+import co.edu.uco.ucobet.generales.crosscuting.exception.UcobetException;
 import co.edu.uco.ucobet.generales.crosscuting.helpers.UUIDHelper;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 
 @RestController
 @RequestMapping("/general/api/v1/cities")
@@ -22,18 +26,34 @@ public class RegisterNewCityController {
 	}
 
 	@PostMapping
-	public RegisterNewCityDTO execute(@RequestBody RegisterNewCityDTO dto) {
-		registerNewCityInteractor.execute(dto);
-		
-		//Cuidado aquí: Recuerde definir el servicio siguiendo buenas prácticas y asegurando que se retornen los mensajes 
-		//y codigos HHTPS adecuados, garantizando que la estrategia REST está orientada a la buena práctica.
-		
-		return dto;
-	}
-	
+    public ResponseEntity<CityResponse> crear(@RequestBody RegisterNewCityDTO dto) {
+
+        var httpStatusCode = HttpStatus.CREATED;
+        var ciudadResponse = new CityResponse();
+
+        try {
+            registerNewCityInteractor.execute(dto);
+            ciudadResponse.getMensajes().add("Ciudad Registrada exitosamente");
+
+        } catch (final UcobetException excepcion) {
+            httpStatusCode = HttpStatus.BAD_REQUEST;
+            ciudadResponse.getMensajes().add(excepcion.getUserMessage());
+            
+        } catch (final Exception excepcion) {
+            httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+
+            var mensajeUsuario = "se ha presentado un problema tratando de registar la nueva Ciudad";
+            ciudadResponse.getMensajes().add(mensajeUsuario);
+        }
+
+        return new ResponseEntity<>(ciudadResponse , httpStatusCode);
+
+    }
 	@GetMapping
 	public RegisterNewCityDTO executeDummy() {
 		return RegisterNewCityDTO.create("Rionegro", UUIDHelper.generate());
 	}
+
+	
 
 }

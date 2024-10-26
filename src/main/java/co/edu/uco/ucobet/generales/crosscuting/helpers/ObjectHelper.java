@@ -2,13 +2,8 @@ package co.edu.uco.ucobet.generales.crosscuting.helpers;
 
 public class ObjectHelper {
 
-	private static final ObjectHelper INSTANCE = new ObjectHelper();
-	
 	private ObjectHelper() {
 
-	}
-	public static final ObjectHelper getObjectHelper() {
-		return INSTANCE;
 	}
 
 	public static <O> boolean isNull(final O object) {
