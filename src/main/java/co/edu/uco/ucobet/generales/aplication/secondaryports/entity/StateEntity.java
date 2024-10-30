@@ -38,16 +38,16 @@ public final class StateEntity {
 		setCountry(country);
 	}
 	
-	static final StateEntity create() {
+	public static final StateEntity create() {
 		return new StateEntity();
 	}
 	
 	
-	static final StateEntity create(final UUID id, final String name, final CountryEntity country) {
+	public static final StateEntity create(final UUID id, final String name, final CountryEntity country) {
 		return new StateEntity(id, name, country);
 	}
 	
-	static final StateEntity create(final UUID id) {
+	public static final StateEntity create(final UUID id) {
 		return new StateEntity(id, TextHelper.EMPTY, CountryEntity.create());
 	}
 

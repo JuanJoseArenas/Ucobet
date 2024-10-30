@@ -30,7 +30,7 @@ public final class CityEntity {
 	private StateEntity state;
 
 
-	public CityEntity() {
+	CityEntity() {
 		setId(UUIDHelper.getDefault());
 		setName(TextHelper.EMPTY);
 		setState(StateEntity.create());

@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.azure.security.keyvault.secrets.SecretClient;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"co.edu.uco.ucobet.generales.aplication.secondaryports.entity" })
+@EntityScan(basePackages = {"co.edu.uco.ucobet.generales"})
 @ComponentScan(basePackages = {"co.edu.uco.ucobet" })
 @EnableJpaRepositories(basePackages = {"co.edu.uco.ucobet" })
 public class UcobetGeneralesApplication  {

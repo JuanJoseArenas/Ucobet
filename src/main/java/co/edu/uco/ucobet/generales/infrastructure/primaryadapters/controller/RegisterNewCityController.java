@@ -2,7 +2,6 @@ package co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.uco.ucobet.generales.aplication.primaryports.dto.RegisterNewCityDTO;
 import co.edu.uco.ucobet.generales.aplication.primaryports.interactor.city.RegisterNewCityInteractor;
 import co.edu.uco.ucobet.generales.crosscuting.exception.UcobetException;
-import co.edu.uco.ucobet.generales.crosscuting.helpers.UUIDHelper;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 
 @RestController
@@ -21,7 +19,6 @@ public class RegisterNewCityController {
 	private RegisterNewCityInteractor registerNewCityInteractor;
 	
 	public RegisterNewCityController(final RegisterNewCityInteractor registerNewCityInteractor) {
-		super();
 		this.registerNewCityInteractor = registerNewCityInteractor;
 	}
 
@@ -49,11 +46,6 @@ public class RegisterNewCityController {
         return new ResponseEntity<>(ciudadResponse , httpStatusCode);
 
     }
-	@GetMapping
-	public RegisterNewCityDTO executeDummy() {
-		return RegisterNewCityDTO.create("Rionegro", UUIDHelper.generate());
-	}
-
 	
 
 }

@@ -19,7 +19,6 @@ public final class RegisterNewCityRulesValidatorImpl implements RegisterNewCityR
 	public RegisterNewCityRulesValidatorImpl(final RegisterNewCityIdRulesValidator registerNewCityIdRulesValidator,
 			final RegisterNewCityNameRulesValidator registerNewCityNameRulesValidator,
 			final RegisterNewCityStateRulesValidator registerNewCityStateRulesValidator) {
-		super();
 		this.registerNewCityIdRulesValidator = registerNewCityIdRulesValidator;
 		this.registerNewCityNameRulesValidator = registerNewCityNameRulesValidator;
 		this.registerNewCityStateRulesValidator = registerNewCityStateRulesValidator;

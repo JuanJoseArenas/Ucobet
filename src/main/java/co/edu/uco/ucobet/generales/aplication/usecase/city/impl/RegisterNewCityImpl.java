@@ -10,7 +10,7 @@ import co.edu.uco.ucobet.generales.aplication.usecase.city.RegisterNewCity;
 import co.edu.uco.ucobet.generales.aplication.usecase.city.RegisterNewCityRulesValidator;
 import co.edu.uco.ucobet.generales.domain.city.CityDomain;
 @Service
-public final class RegisterNewCityImpl implements RegisterNewCity {
+public class RegisterNewCityImpl implements RegisterNewCity {
 
 	private CityRepository cityRepository;
 	private RegisterNewCityRulesValidator registerNewCityRulesValidator;

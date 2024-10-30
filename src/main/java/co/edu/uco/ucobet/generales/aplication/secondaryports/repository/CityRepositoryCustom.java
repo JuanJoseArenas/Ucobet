@@ -14,6 +14,5 @@ public interface CityRepositoryCustom {
 	List<CityEntity> findByFilter(CityEntity filter);
 	
 	boolean isCityBeingUsed(UUID cityId);
-	boolean existsByNameAndState(String name, String state);
 
 }

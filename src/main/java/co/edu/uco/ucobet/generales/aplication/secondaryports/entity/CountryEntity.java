@@ -30,16 +30,16 @@ public final class CountryEntity {
 		setName(name);
 	}
 	
-	static final CountryEntity create() {
+	public static final CountryEntity create() {
 		return new CountryEntity();
 	}
 	
 	
-	static final CountryEntity create(final UUID id, final String name) {
+	public static final CountryEntity create(final UUID id, final String name) {
 		return new CountryEntity(id, name);
 	}
 	
-	static final CountryEntity create(final UUID id) {
+	public static final CountryEntity create(final UUID id) {
 		return new CountryEntity(id, TextHelper.EMPTY);
 	}
 

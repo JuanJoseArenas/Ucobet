@@ -69,24 +69,4 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
 					exception);
 		}
 	}
-
-	@Override
-	public boolean existsByNameAndState(String name, String state) {
-		try {
-			var criteriaBuilder = entityManager.getCriteriaBuilder();
-			var query = criteriaBuilder.createQuery(Long.class);
-			var root = query.from(CityEntity.class);
-
-			query.select(criteriaBuilder.count(root)).where(criteriaBuilder.and(
-					criteriaBuilder.equal(root.get("name"), name), criteriaBuilder.equal(root.get("state"), state)));
-
-			Long count = entityManager.createQuery(query).getSingleResult();
-
-			return count > 0;
-
-		} catch (final Exception exception) {
-			throw RepositoryUcoBetException.create(
-					"Error al verificar, si existe una ciudad con el nombre y estado especificados", null, exception);
-		}
-	}
 }

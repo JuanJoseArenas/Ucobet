@@ -10,12 +10,14 @@ public final class RegisterNewCityDTO {
 	private UUID stateId;
 
 	
-	public static RegisterNewCityDTO create(final String cityName, final UUID stateId) {
-		return new RegisterNewCityDTO(cityName, stateId);
-	}
+
 	public RegisterNewCityDTO(final String cityName, final UUID stateId) {
 		setStateId(stateId);
 		setCityName(cityName);
+	}
+	
+	public static RegisterNewCityDTO create(final String cityName, final UUID stateId) {
+		return new RegisterNewCityDTO(cityName, stateId);
 	}
 
 	private void setCityName(String cityName) {
