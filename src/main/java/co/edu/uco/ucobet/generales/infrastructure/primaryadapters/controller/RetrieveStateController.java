@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.uco.ucobet.generales.aplication.primaryports.dto.RetrieveStateDTO;
 import co.edu.uco.ucobet.generales.aplication.primaryports.interactor.state.RetrieveStateInteractor;
 import co.edu.uco.ucobet.generales.crosscuting.exception.UcobetException;
+import co.edu.uco.ucobet.generales.crosscuting.messageCatalog.MessageCatalogStrategy;
+import co.edu.uco.ucobet.generales.crosscuting.messageCatalog.data.CodigoMensaje;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.StateResponse;
 
 
@@ -29,15 +31,15 @@ public class RetrieveStateController {
 	try {
 		var stateDto = RetrieveStateDTO.create();
 		stateResponse.setDatos(retrieveStateInteractor.execute(stateDto));
-		stateResponse.getMensajes().add("Estados Consultados Satisfactoriamente");
+		stateResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00010));
 	}catch (final UcobetException exception) {
 		httpStatusCode = HttpStatus.BAD_REQUEST;
-		stateResponse.getMensajes().add("\"Se ha presentado una SQLException tratando de realizar la consulta de los departamentos en la tabla \\\"State\\\" de la base de datos.\"");
+		stateResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00011));
 		exception.printStackTrace();
 		
 	}catch(final Exception exception) {
 		httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-		var mensajeUsusario = "Se ha presentado un problema al consultar la información de los estados";
+		var mensajeUsusario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00012);
 		stateResponse.getMensajes().add(mensajeUsusario);
 		exception.printStackTrace();
 	}

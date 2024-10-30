@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.uco.ucobet.generales.aplication.primaryports.dto.RegisterNewCityDTO;
 import co.edu.uco.ucobet.generales.aplication.primaryports.interactor.city.RegisterNewCityInteractor;
 import co.edu.uco.ucobet.generales.crosscuting.exception.UcobetException;
+import co.edu.uco.ucobet.generales.crosscuting.messageCatalog.MessageCatalogStrategy;
+import co.edu.uco.ucobet.generales.crosscuting.messageCatalog.data.CodigoMensaje;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 
 @RestController
@@ -30,7 +32,7 @@ public class RegisterNewCityController {
 
         try {
             registerNewCityInteractor.execute(dto);
-            ciudadResponse.getMensajes().add("Ciudad Registrada exitosamente");
+            ciudadResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00008));
 
         } catch (final UcobetException excepcion) {
             httpStatusCode = HttpStatus.BAD_REQUEST;
@@ -39,7 +41,7 @@ public class RegisterNewCityController {
         } catch (final Exception excepcion) {
             httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 
-            var mensajeUsuario = "se ha presentado un problema tratando de registar la nueva Ciudad";
+            var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00009);
             ciudadResponse.getMensajes().add(mensajeUsuario);
         }
 
