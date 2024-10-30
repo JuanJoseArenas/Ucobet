@@ -69,4 +69,23 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
 					exception);
 		}
 	}
+	@Override
+	public boolean existsByNameIgnoreCase(String name) {
+	    try {
+	        var criteriaBuilder = entityManager.getCriteriaBuilder();
+	        var query = criteriaBuilder.createQuery(Long.class);
+	        var root = query.from(CityEntity.class);
+
+	        // Realizamos una comparación sin tener en cuenta mayúsculas y minúsculas
+	        query.select(criteriaBuilder.count(root))
+	             .where(criteriaBuilder.equal(criteriaBuilder.lower(root.get("name")), name.toLowerCase()));
+
+	        Long count = entityManager.createQuery(query).getSingleResult();
+
+	        return count > 0;
+
+	    } catch (final Exception exception) {
+	        throw RepositoryUcoBetException.create("Error al verificar si la ciudad con el nombre ya existe", null, exception);
+	    }
+	}
 }
