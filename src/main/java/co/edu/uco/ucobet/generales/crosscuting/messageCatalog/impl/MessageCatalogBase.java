@@ -39,7 +39,12 @@ public class MessageCatalogBase implements MessageCatalog{
 				"Se ha presentado una SQLException tratando de realizar la consulta de los departamentos en la tabla \\\"State\\\" de la base de datos."));
 		mensajes.put(CodigoMensaje.M00012.getIdentificador(), new Mensaje(CodigoMensaje.M00012,
 				"Se ha presentado un problema al consultar la información de los estados"));
-		
+		mensajes.put(CodigoMensaje.M00013.getIdentificador(), new Mensaje(CodigoMensaje.M00013,
+				"Ciudades Consultados Satisfactoriamente"));
+		mensajes.put(CodigoMensaje.M00014.getIdentificador(), new Mensaje(CodigoMensaje.M00014,
+				"Se ha presentado una SQLException tratando de realizar la consulta de las Ciudades de la tabla \\\"City\\\" de la base de datos."));
+		mensajes.put(CodigoMensaje.M00015.getIdentificador(), new Mensaje(CodigoMensaje.M00015,
+				"Se ha presentado un problema al consultar la información de las Ciudades"));
 		
 	
 	}

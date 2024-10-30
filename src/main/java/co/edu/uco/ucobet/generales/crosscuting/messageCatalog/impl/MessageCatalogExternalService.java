@@ -29,7 +29,6 @@ public class MessageCatalogExternalService implements MessageCatalog {
 
 	@Override
 	public Mensaje obtenerMensaje(CodigoMensaje codigo, String... parametros) {
-		// TODO Auto-generated method stub
 		if (ObjectHelper.isNull(codigo)) {
 			var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00002);
 			var mensajeTecnico = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00001);
