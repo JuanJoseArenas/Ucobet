@@ -19,9 +19,10 @@ public enum CodigoMensaje {
 	M00013(TipoMensaje.USUARIO, CategoriaMensaje.EXITO, "00013", true),
 	M00014(TipoMensaje.USUARIO, CategoriaMensaje.ERROR, "00014", true),
 	M00015(TipoMensaje.USUARIO, CategoriaMensaje.ERROR, "00015", true),
-	M00016(TipoMensaje.USUARIO, CategoriaMensaje.ERROR, "00016", true);
+	M00016(TipoMensaje.USUARIO, CategoriaMensaje.ERROR, "00016", true),
+	M00017(TipoMensaje.USUARIO, CategoriaMensaje.ERROR, "00017", true);
 	
-	
+
 	private TipoMensaje tipo;
 	private CategoriaMensaje categoria;
 	private String codigo;

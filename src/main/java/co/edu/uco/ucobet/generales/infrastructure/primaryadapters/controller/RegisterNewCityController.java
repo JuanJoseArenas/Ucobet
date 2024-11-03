@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +32,9 @@ import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.res
 
 @RestController
 @RequestMapping("/general/api/v1/cities")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RegisterNewCityController {
+	
 	@Value("${sendgrid.api.key}")
 	private String apiKey;
 
@@ -95,7 +98,8 @@ public class RegisterNewCityController {
 
 	private void sendEmailNotification(String cityName) {
 		Email from = new Email(correofrom);
-		String subject = "Nueva Ciudad Registrada";
+		
+		String subject = String.format(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00017));
 		Email to = new Email("juanjoseaq99@gmail.com");
 
 		String mensajeFormateado = String.format(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00016),

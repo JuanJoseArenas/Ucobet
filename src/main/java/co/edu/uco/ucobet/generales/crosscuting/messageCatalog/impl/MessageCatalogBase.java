@@ -47,7 +47,9 @@ public class MessageCatalogBase implements MessageCatalog{
 				"Se ha presentado un problema al consultar la información de las Ciudades"));
 		mensajes.put(CodigoMensaje.M00016.getIdentificador(), new Mensaje(CodigoMensaje.M00016,
 				"Se ha registrado exitosamente una nueva ciudad:"));
-	
+		mensajes.put(CodigoMensaje.M00017.getIdentificador(), new Mensaje(CodigoMensaje.M00017,
+				"Nueva Ciudad Registrada"));
+		
 	}
 
 	@Override
