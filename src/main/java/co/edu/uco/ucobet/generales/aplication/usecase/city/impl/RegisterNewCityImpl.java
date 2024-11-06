@@ -34,17 +34,6 @@ public class RegisterNewCityImpl implements RegisterNewCity {
 				.setState(StateEntityMapper.INSTANCE.domainToEntity(domain.getState()));
 
 		cityRepository.save(cityEntity);
-
-		// Notificar al administrador sobre la creación de la nueva ciudad
-		// : ¿Cómo? Notification Building Block
-
-		// Tenga en cuenta que:
-		// 1. El correo del administrador está en un lugar parametrizado (Parameters
-		// Building Block)
-		// 2. El asunto del correo está en un lugar parametrizado (Parameters Building
-		// Block)
-		// 3. El cuerpo del correo está en un lugar parametrizado (Parameters Building
-		// Block)
 	}
 
 }

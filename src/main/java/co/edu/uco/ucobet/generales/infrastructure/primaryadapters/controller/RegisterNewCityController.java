@@ -1,9 +1,6 @@
 
 package co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller;
 
-import java.io.IOException;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,42 +9,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.sendgrid.Method;
-import com.sendgrid.Request;
-import com.sendgrid.Response;
-import com.sendgrid.SendGrid;
-import com.sendgrid.helpers.mail.Mail;
-import com.sendgrid.helpers.mail.objects.Content;
-import com.sendgrid.helpers.mail.objects.Email;
-
 import co.edu.uco.ucobet.generales.aplication.primaryports.dto.CityDTO;
 import co.edu.uco.ucobet.generales.aplication.primaryports.dto.RegisterNewCityDTO;
 import co.edu.uco.ucobet.generales.aplication.primaryports.interactor.city.RegisterNewCityInteractor;
 import co.edu.uco.ucobet.generales.aplication.primaryports.interactor.city.RetrieveCityInteractor;
 import co.edu.uco.ucobet.generales.crosscuting.exception.UcobetException;
-import co.edu.uco.ucobet.generales.crosscuting.messageCatalog.MessageCatalogStrategy;
-import co.edu.uco.ucobet.generales.crosscuting.messageCatalog.data.CodigoMensaje;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.MessageService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.notificationservice.EmailService;
 
 @RestController
 @RequestMapping("/general/api/v1/cities")
 @CrossOrigin(origins = "http://localhost:4200")
 public class RegisterNewCityController {
 	
-	@Value("${sendgrid.api.key}")
-	private String apiKey;
 
-	@Value("${sendgrid.from}")
-	private String correofrom;
 
 	private final RegisterNewCityInteractor registerNewCityInteractor;
 	private final RetrieveCityInteractor retrieveCityInteractor;
-
+	private final MessageService messageService;
+	private final EmailService emailService;
+	
 	public RegisterNewCityController(final RegisterNewCityInteractor registerNewCityInteractor,
-			final RetrieveCityInteractor retrieveCityInteractor) {
+			final RetrieveCityInteractor retrieveCityInteractor, final MessageService messageService, EmailService emailService) {
 		this.registerNewCityInteractor = registerNewCityInteractor;
 		this.retrieveCityInteractor = retrieveCityInteractor;
+		this.messageService = messageService;
+        this.emailService = emailService;
 	}
 
 	@PostMapping
@@ -57,9 +45,9 @@ public class RegisterNewCityController {
 
 		try {
 			registerNewCityInteractor.execute(dto);
-			ciudadResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00008));
-
-			sendEmailNotification(dto.getCityName());
+			ciudadResponse.getMensajes().add(messageService.getMessageContent("M001"));
+			
+			emailService.sendEmailNotification(dto.getCityName());
 
 		} catch (final UcobetException excepcion) {
 			httpStatusCode = HttpStatus.BAD_REQUEST;
@@ -67,8 +55,7 @@ public class RegisterNewCityController {
 
 		} catch (final Exception excepcion) {
 			httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-			var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00009);
-			ciudadResponse.getMensajes().add(mensajeUsuario);
+			ciudadResponse.getMensajes().add(messageService.getMessageContent("M002"));
 		}
 
 		return new ResponseEntity<>(ciudadResponse, httpStatusCode);
@@ -81,44 +68,18 @@ public class RegisterNewCityController {
 		try {
 			var cityDto = CityDTO.create();
 			cityResponse.setDatos(retrieveCityInteractor.execute(cityDto));
-			cityResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00013));
+			cityResponse.getMensajes().add(messageService.getMessageContent("M006"));
 		} catch (final UcobetException exception) {
 			httpStatusCode = HttpStatus.BAD_REQUEST;
-			cityResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00014));
+			cityResponse.getMensajes().add(messageService.getMessageContent("M007"));
 			exception.printStackTrace();
 
 		} catch (final Exception exception) {
 			httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-			var mensajeUsusario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00015);
-			cityResponse.getMensajes().add(mensajeUsusario);
+
+			cityResponse.getMensajes().add(messageService.getMessageContent("M008"));
 			exception.printStackTrace();
 		}
 		return new ResponseEntity<>(cityResponse, httpStatusCode);
-	}
-
-	private void sendEmailNotification(String cityName) {
-		Email from = new Email(correofrom);
-		
-		String subject = String.format(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00017));
-		Email to = new Email("juanjoseaq99@gmail.com");
-
-		String mensajeFormateado = String.format(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00016),
-				cityName);
-
-		Content content = new Content("text/html", mensajeFormateado + "<strong>" + cityName + "</strong>");
-		Mail mail = new Mail(from, subject, to, content);
-
-		SendGrid sg = new SendGrid(apiKey);
-		Request request = new Request();
-		try {
-			request.setMethod(Method.POST);
-			request.setEndpoint("mail/send");
-			request.setBody(mail.build());
-			Response response = sg.api(request);
-			System.out.println("Email enviado - Status Code: " + response.getStatusCode());
-		} catch (IOException ex) {
-			System.err.println("Error al enviar email: " + ex.getMessage());
-			ex.printStackTrace();
-		}
 	}
 }

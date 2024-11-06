@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.uco.ucobet.generales.aplication.primaryports.dto.RetrieveStateDTO;
 import co.edu.uco.ucobet.generales.aplication.primaryports.interactor.state.RetrieveStateInteractor;
 import co.edu.uco.ucobet.generales.crosscuting.exception.UcobetException;
-import co.edu.uco.ucobet.generales.crosscuting.messageCatalog.MessageCatalogStrategy;
-import co.edu.uco.ucobet.generales.crosscuting.messageCatalog.data.CodigoMensaje;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.StateResponse;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.MessageService;
 
 
 @RestController
@@ -21,9 +20,11 @@ import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.res
 public class RetrieveStateController {
 	
 	private RetrieveStateInteractor retrieveStateInteractor;
+	private final MessageService messageService;
 	
-	public RetrieveStateController(RetrieveStateInteractor retrieveStateInteractor) {
+	public RetrieveStateController(RetrieveStateInteractor retrieveStateInteractor, final MessageService messageService) {
 		this.retrieveStateInteractor = retrieveStateInteractor;
+		this.messageService = messageService;
 	}
 	
 	@GetMapping
@@ -33,16 +34,15 @@ public class RetrieveStateController {
 	try {
 		var stateDto = RetrieveStateDTO.create();
 		stateResponse.setDatos(retrieveStateInteractor.execute(stateDto));
-		stateResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00010));
+		stateResponse.getMensajes().add(messageService.getMessageContent("M003"));
 	}catch (final UcobetException exception) {
 		httpStatusCode = HttpStatus.BAD_REQUEST;
-		stateResponse.getMensajes().add(MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00011));
+		stateResponse.getMensajes().add(messageService.getMessageContent("M004"));
 		exception.printStackTrace();
 		
 	}catch(final Exception exception) {
 		httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-		var mensajeUsusario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00012);
-		stateResponse.getMensajes().add(mensajeUsusario);
+		stateResponse.getMensajes().add(messageService.getMessageContent("M005"));
 		exception.printStackTrace();
 	}
 	return new ResponseEntity<>(stateResponse, httpStatusCode);
